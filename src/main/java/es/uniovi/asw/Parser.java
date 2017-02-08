@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public class Parser {
                     user.setApellidos(apellidos);
                     String email = row.getCell(2).getStringCellValue();
                     user.setEmail(email);
-                    String nacimiento = row.getCell(3).getStringCellValue();
+                    Date nacimiento = row.getCell(3).getDateCellValue();
                     user.setNacimiento(nacimiento);
                     String direccion = row.getCell(4).getStringCellValue();
                     user.setDireccion(direccion);

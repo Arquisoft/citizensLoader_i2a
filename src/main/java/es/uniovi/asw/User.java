@@ -1,5 +1,9 @@
 package es.uniovi.asw;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Carla on 08/02/2017.
  */
@@ -7,7 +11,7 @@ public class User {
     String nombre;
     String apellidos;
     String email;
-    String nacimiento;
+    Date nacimiento;
     String direccion;
     String nacionalidad;
     String dni;
@@ -24,7 +28,7 @@ public class User {
         this.email = email;
     }
 
-    public void setNacimiento(String nacimiento) {
+    public void setNacimiento(Date nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -42,8 +46,9 @@ public class User {
 
     @Override
     public String toString() {
+        String fechaFormateada = new SimpleDateFormat("dd/MM/yyyy").format(nacimiento);
         return "Nombre: " + nombre + "; Apellidos: " + apellidos + "; " +
-                "Email: " + email + "; Nacimiento: " + nacimiento + "10/10/1985; " +
+                "Email: " + email + "; Nacimiento: " + fechaFormateada + "; " +
                 "Dirección: " + direccion + "; Nacionalidad: " +
                 nacionalidad + "; DNI: " + dni;
     }

@@ -24,13 +24,13 @@ public class ParserTest {
 
         assertEquals("Nombre: Luis; Apellidos: López Fernando; " +
                         "Email: luis@example.com; Nacimiento: 02/03/1970; " +
-                        "Direccion: C/ Real Oviedo 2; Nacionalidad: " +
+                        "Dirección: C/ Real Oviedo 2; Nacionalidad: " +
                         "Español; DNI: 19160962F",
                 users.get(1).toString());
 
         assertEquals("Nombre: Ana; Apellidos: Torres Pardo; " +
                         "Email: ana@example.com; Nacimiento: 01/01/1960; " +
-                        "Direccion: Av. De la Constitución 8; Nacionalidad: " +
+                        "Dirección: Av. De la Constitución 8; Nacionalidad: " +
                         "Español; DNI: 09940449X",
                 users.get(2).toString());
     }

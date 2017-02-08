@@ -1,6 +1,6 @@
 package es.uniovi.asw;
 
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class ParserTest {
     @Test
     public void testParseSmallFile(){
         Parser parser = new Parser();
-        List<User> users = parser.parseFile("testSmall.xlsx");
+        List<User> users = parser.parseFile("src/test/resources/testSmall.xlsx");
 
         assertEquals("Nombre: Juan; Apellidos: Torres Pardo; " +
                 "Email: juan@example.com; Nacimiento: 10/10/1985; " +

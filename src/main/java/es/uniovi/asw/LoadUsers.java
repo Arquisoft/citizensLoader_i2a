@@ -5,6 +5,7 @@ import es.uniovi.asw.parser.XlsxParser;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -33,7 +34,14 @@ public class LoadUsers {
 			System.out.println("Este formato de archivo no está soportado");
 		}
 
+		sendToDB(parser.parseFile(file));
+
 	}
+
+	// TODO
+    private void sendToDB(List<User> users) {
+
+    }
 
     private Parser getParser(File file) {
         Parser parser = null;

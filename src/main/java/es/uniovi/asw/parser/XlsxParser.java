@@ -1,5 +1,6 @@
 package es.uniovi.asw.parser;
 
+import es.uniovi.asw.RandomPasswordGenerator;
 import es.uniovi.asw.User;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by Carla on 08/02/2017.
  */
-public class XlsxParser implements Parser{
+public class XlsxParser implements Parser {
     @Override
     public List<User> parseFile(File file) {
         List users = new ArrayList<User>();
@@ -70,6 +71,8 @@ public class XlsxParser implements Parser{
                 user.setNacionalidad(nacionalidad);
                 String dni = row.getCell(6).getStringCellValue();
                 user.setDNI(dni);
+
+                user.setPassword(RandomPasswordGenerator.generatePassword());
 
                 users.add(user);
             }

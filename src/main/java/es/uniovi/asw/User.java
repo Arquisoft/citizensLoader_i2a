@@ -15,6 +15,7 @@ public class User {
     String direccion;
     String nacionalidad;
     String dni;
+    String password;
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -51,5 +52,9 @@ public class User {
                 "Email: " + email + "; Nacimiento: " + fechaFormateada + "; " +
                 "Dirección: " + direccion + "; Nacionalidad: " +
                 nacionalidad + "; DNI: " + dni;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

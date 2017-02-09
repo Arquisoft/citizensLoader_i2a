@@ -1,7 +1,9 @@
-package es.uniovi.asw;
+package es.uniovi.asw.parser;
 
+import es.uniovi.asw.User;
 import org.junit.*;
 
+import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -10,11 +12,12 @@ import static org.junit.Assert.assertEquals;
  * Created by Carla on 08/02/2017.
  */
 
-public class ParserTest {
+public class XlsxParserTest {
     @Test
     public void testParseSmallFile(){
-        Parser parser = new Parser();
-        List<User> users = parser.parseFile("src/test/resources/testSmall.xlsx");
+        XlsxParser parser = new XlsxParser();
+        File file = new File("src/test/resources/testSmall.xlsx");
+        List<User> users = parser.parseFile(file);
 
         assertEquals("Nombre: Juan; Apellidos: Torres Pardo; " +
                 "Email: juan@example.com; Nacimiento: 10/10/1985; " +

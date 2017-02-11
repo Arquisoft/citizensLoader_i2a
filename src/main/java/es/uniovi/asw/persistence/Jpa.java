@@ -12,9 +12,9 @@ public class Jpa {
 	private static EntityManagerFactory emf = null;
 	private static EntityManager em = null;
 
-	public EntityManager getEntityManager() {
+	public static EntityManager getEntityManager() {
 		emf = Persistence
-				.createEntityManagerFactory("carworkshop");
+				.createEntityManagerFactory("citizens");
 		
 		em = emf.createEntityManager();
 		emf.createEntityManager();
@@ -22,7 +22,7 @@ public class Jpa {
 		return em;
 	}
 	
-	public void close() {
+	public static void close() {
 		emf.close();
 		em.close();
 	}

@@ -2,11 +2,8 @@ package es.uniovi.asw;
 
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.parser.XlsxParser;
-
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Main application

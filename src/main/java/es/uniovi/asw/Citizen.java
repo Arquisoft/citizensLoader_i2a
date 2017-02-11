@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Temporal;
@@ -12,7 +14,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Citizen {
 
-	@Id private Long id;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
 
 	@Column(name="FIRST_NAME") private String firstName;
 	@Column(name="LAST_NAME") private String lastName;
@@ -26,12 +28,14 @@ public class Citizen {
 	private String password;
 	private String nationality;
 
-	Citizen() { }
+	private String dni;
 
-	public Citizen(Long id, String firstName, String lastName, Date birthdate, String address, String email,
+	public Citizen() { }
+
+	public Citizen(String dni, String firstName, String lastName, Date birthdate, String address, String email,
 			String nationality) {
 		super();
-		this.id = id;
+		this.dni = dni;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
@@ -98,6 +102,14 @@ public class Citizen {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
+	public String getDni() {
+		return dni;
 	}
 
 	@Override

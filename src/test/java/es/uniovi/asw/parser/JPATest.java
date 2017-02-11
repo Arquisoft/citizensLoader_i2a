@@ -24,8 +24,8 @@ public class JPATest {
 
 	@Before
 	public void setUp() {
-		c1 = new Citizen((long) 1, "Name", "Surname", new Date(), "Address", "Email", "Nationality");
-		c2 = new Citizen((long) 2, "Nombre", "Apellidos", new Date(), "Direccion", "Correo", "Nacionalidad");
+		c1 = new Citizen("1", "Name", "Surname", new Date(), "Address", "Email", "Nationality");
+		c2 = new Citizen("1", "Nombre", "Apellidos", new Date(), "Direccion", "Correo", "Nacionalidad");
 	}
 
 	@After

@@ -1,5 +1,6 @@
 package es.uniovi.asw.parser;
 
+import es.uniovi.asw.Citizen;
 import es.uniovi.asw.User;
 import org.junit.*;
 
@@ -17,7 +18,7 @@ public class XlsxParserTest {
     public void testParseSmallFile(){
         XlsxParser parser = new XlsxParser();
         File file = new File("src/test/resources/testSmall.xlsx");
-        List<User> users = parser.parseFile(file);
+        List<Citizen> users = parser.parseFile(file);
 
         assertEquals("Nombre: Juan; Apellidos: Torres Pardo; " +
                 "Email: juan@example.com; Nacimiento: 10/10/1985; " +

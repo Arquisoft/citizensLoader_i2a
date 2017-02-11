@@ -2,8 +2,13 @@ package es.uniovi.asw;
 
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.parser.XlsxParser;
+import es.uniovi.asw.persistence.Jpa;
+
 import java.io.File;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 /**
  * Main application
@@ -17,7 +22,7 @@ public class LoadUsers {
 		final LoadUsers runner = new LoadUsers();
 		runner.run(args);
 	}
-
+	
 	void run(String... args) {
 		File file = new File (args[0]);
 		// deberia ser args[1]??
@@ -36,8 +41,14 @@ public class LoadUsers {
 	}
 
 	// TODO
-    private void sendToDB(List<User> users) {
-
+    private void sendToDB(List<Citizen> list) {
+    	EntityManager mapper = Jpa.getEntityManager();
+    	EntityTransaction trx = mapper.getTransaction();
+		trx.begin();
+    	for(Citizen c : list) {
+    		mapper.persist(c);
+    	}
+    	trx.commit();
     }
 
     private Parser getParser(File file) {

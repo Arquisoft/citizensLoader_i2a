@@ -1,7 +1,7 @@
 package es.uniovi.asw.parser;
 
 import es.uniovi.asw.RandomPasswordGenerator;
-import es.uniovi.asw.User;
+import es.uniovi.asw.Citizen;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class XlsxParser implements Parser {
     @Override
-    public List<User> parseFile(File file) {
-        List users = new ArrayList<User>();
+    public List<Citizen> parseFile(File file) {
+        List users = new ArrayList<Citizen>();
 
         try {
             XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
@@ -55,23 +55,16 @@ public class XlsxParser implements Parser {
         XSSFRow row;// se salta la primera línea
         for (int r = 1; r < rows; r++) {
             row = sheet.getRow(r);
-            User user = new User();
             if (row != null) {
                 String nombre = row.getCell(0).getStringCellValue();
-                user.setNombre(nombre);
                 String apellidos = row.getCell(1).getStringCellValue();
-                user.setApellidos(apellidos);
                 String email = row.getCell(2).getStringCellValue();
-                user.setEmail(email);
                 Date nacimiento = row.getCell(3).getDateCellValue();
-                user.setNacimiento(nacimiento);
                 String direccion = row.getCell(4).getStringCellValue();
-                user.setDireccion(direccion);
                 String nacionalidad = row.getCell(5).getStringCellValue();
-                user.setNacionalidad(nacionalidad);
                 String dni = row.getCell(6).getStringCellValue();
-                user.setDNI(dni);
 
+                Citizen user = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad);
                 user.setPassword(RandomPasswordGenerator.generatePassword());
 
                 users.add(user);

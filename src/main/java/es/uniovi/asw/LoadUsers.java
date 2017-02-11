@@ -10,6 +10,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.apache.commons.lang.RandomStringUtils;
+
+
 /**
  * Main application
  * 
@@ -21,6 +24,7 @@ public class LoadUsers {
 	public static void main(String... args) {
 		final LoadUsers runner = new LoadUsers();
 		runner.run(args);
+	
 	}
 	
 	void run(String... args) {
@@ -40,12 +44,14 @@ public class LoadUsers {
 
 	}
 
-	// TODO
+	
     private void sendToDB(List<Citizen> list) {
     	EntityManager mapper = Jpa.getEntityManager();
     	EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
     	for(Citizen c : list) {
+    		// create a random alphanumeric password and persists the user
+    		c.setPassword(RandomStringUtils.randomAlphanumeric(10));
     		mapper.persist(c);
     	}
     	trx.commit();

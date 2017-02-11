@@ -143,7 +143,7 @@ public class Citizen {
         return "Nombre: " + firstName + "; Apellidos: " + lastName + "; " +
                 "Email: " + email + "; Nacimiento: " + simpleDate + "; " +
                 "Dirección: " + address + "; Nacionalidad: " +
-                nationality + "; DNI: " + id;
+                nationality + "; DNI: " + dni;
     }
 
 

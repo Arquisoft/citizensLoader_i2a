@@ -14,7 +14,7 @@ public class PDFLetter implements Writtable{
 	@Override
 	public void write(Citizen c) throws FileNotFoundException {
 		//Initialize PDF writer
-        PdfWriter writer = new PdfWriter("files/Welcome"+c.getFirstName()+c.getLastName()+".docx");
+        PdfWriter writer = new PdfWriter("generatedFiles/Welcome"+c.getDni()+".pdf");
  
         //Initialize PDF document
         PdfDocument pdf = new PdfDocument(writer);
@@ -23,7 +23,8 @@ public class PDFLetter implements Writtable{
         Document document = new Document(pdf);
  
         //Add paragraph to the document
-        document.add(new Paragraph("Gracias por registrarse! Su user es: "+ c.getEmail()+ " y su contraseña: "+c.getPassword()));
+        document.add(new Paragraph("Gracias por registrarse! Su user es: "
+        + c.getEmail()+ " y su contraseña: "+c.getPassword()));
  
         //Close document
         document.close();

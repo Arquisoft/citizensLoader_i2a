@@ -16,12 +16,15 @@ public class WordLetter implements Writtable{
 	public void write(Citizen c) throws IOException {
 	    XWPFDocument document = new XWPFDocument();
         //Write the Document in file system
-	    FileOutputStream out = new FileOutputStream(new File("files/Welcome"+c.getFirstName()+c.getLastName()+".docx"));
+	    FileOutputStream out = new FileOutputStream(
+	    		new File("generatedFiles/Welcome"+c.getDni()+".pdf"));
 
         //create Paragraph
         XWPFParagraph paragraph = document.createParagraph();
         XWPFRun run = paragraph.createRun();
-        run.setText("Gracias por registrarse! Su user es: "+ c.getEmail()+ " y su contraseña: "+c.getPassword() );
+        run.setText("Gracias por registrarse! Su user es: "
+        + c.getEmail()+ " y su contraseña: "
+        		+c.getPassword() );
         document.write(out);
        
         //Close document

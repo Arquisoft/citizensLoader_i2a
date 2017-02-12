@@ -16,11 +16,21 @@ public class MyLogger {
 	public void record(String string) throws IOException {
 		Date date = new Date();
 		String linea = "";
-		fichero.write(linea);
-		fichero.write(string +" "+ date.toString() );
+		fichero.append(linea);
+		fichero.append(string +" "+ date.toString() );
 		fichero.newLine();
-		fichero.write("--------------------------");
-		fichero.close();
+		fichero.append("--------------------------");
+		fichero.newLine();
+	}
+
+	public void close() {
+		try {
+			fichero.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	

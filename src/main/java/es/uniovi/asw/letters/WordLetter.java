@@ -16,7 +16,7 @@ public class WordLetter implements Writtable{
 	public void write(Citizen c) throws IOException {
 	    XWPFDocument document = new XWPFDocument();
         //Write the Document in file system
-	    FileOutputStream out = new FileOutputStream(new File("Welcome"+c.getFirstName()+c.getLastName()+".docx"));
+	    FileOutputStream out = new FileOutputStream(new File("files/Welcome"+c.getFirstName()+c.getLastName()+".docx"));
 
         //create Paragraph
         XWPFParagraph paragraph = document.createParagraph();

@@ -1,11 +1,11 @@
 package es.uniovi.asw;
 
 import es.uniovi.asw.checker.CheckCitizen;
+import es.uniovi.asw.letters.SendLetters;
 import es.uniovi.asw.logger.MyLogger;
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.parser.XlsxParser;
 import es.uniovi.asw.persistence.Jpa;
-import es.uniovi.letters.SendLetters;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +49,7 @@ public class LoadUsers {
 		}
 
 		sendToDB(parser.parseFile(file));
+		//creates de log file in case there are some errores
 		log.createLog(file.getName());
 
 	}
@@ -61,13 +62,16 @@ public class LoadUsers {
     	for(Citizen c : list) {
     		// create a random alphanumeric password and persists the user
     		c.setPassword(RandomStringUtils.randomAlphanumeric(10));
+    		//if the user is not in the database, persist
     		if (CheckCitizen.check(c)){
     			mapper.persist(c);
+    		//if it already exists, we record the error in the log file	
     		}else {
     			log.record("The citizen" + c.getFirstName() + " " + c.getLastName() + " already has an user");
     			continue;
     		}
     		// not really sure if this method has to be called here
+    		// this method sends letters to all the new users
     		send.send(c);
     	}
     	trx.commit();

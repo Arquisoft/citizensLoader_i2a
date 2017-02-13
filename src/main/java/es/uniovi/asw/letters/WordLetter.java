@@ -17,7 +17,7 @@ public class WordLetter implements Writtable{
 	    XWPFDocument document = new XWPFDocument();
         //Write the Document in file system
 	    FileOutputStream out = new FileOutputStream(
-	    		new File("generatedFiles/Welcome"+c.getDni()+".pdf"));
+	    		new File("generatedFiles/Welcome"+c.getDni()+".docx"));
 
         //create Paragraph
         XWPFParagraph paragraph = document.createParagraph();

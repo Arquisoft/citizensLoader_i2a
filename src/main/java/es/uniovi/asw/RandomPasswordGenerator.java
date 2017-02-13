@@ -2,8 +2,6 @@ package es.uniovi.asw;
 
 import java.util.Random;
 
-import org.apache.commons.lang.RandomStringUtils;
-
 /**
  * Created by Carla on 09/02/2017.
  */

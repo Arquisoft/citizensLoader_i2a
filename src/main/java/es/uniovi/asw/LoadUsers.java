@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import es.uniovi.asw.checker.CheckCitizen;
+import es.uniovi.asw.checker.CheckDifferentData;
 import es.uniovi.asw.logger.MyLogger;
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.parser.XlsxParser;
@@ -55,9 +56,13 @@ public class LoadUsers {
 				// if it already exists, we record the error in the log file
 			} else {
 				log.record("The citizen " + c.getFirstName()
-				+ " " + c.getLastName() + " already has an user");
-				// TODO check if the data in existing user is the same as in new one
-				// if it is NOT the same, record as an ERROR in the log
+				+ " " + c.getLastName() + " has already an user");
+				// and if the data is different we put that error in the log
+				if (!CheckDifferentData.citizenHasSameData(c)){
+					log.record("The citizen " + c.getFirstName()
+					+ " " + c.getLastName() + " has different data in the"
+							+ " database and in the document");	
+				}
 				continue;
 			}
 		}

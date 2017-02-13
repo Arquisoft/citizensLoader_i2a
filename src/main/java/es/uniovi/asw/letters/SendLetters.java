@@ -17,7 +17,7 @@ public class SendLetters {
 		PDFLetter pdf = new PDFLetter();
 		word.write(c);
 		pdf.write(c);
-		
+		System.out.println("La carta para " + c.getFirstName() + " " + c.getLastName()+ " ha sido generada");
 	}
 
 }

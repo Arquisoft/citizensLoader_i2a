@@ -17,7 +17,7 @@ public class MyLogger {
 		Date date = new Date();
 		String linea = "";
 		fichero.append(linea);
-		fichero.append(string +" "+ date.toString() );
+		fichero.append(date.toString() +" "+ string );
 		fichero.newLine();
 		fichero.append("--------------------------");
 		fichero.newLine();

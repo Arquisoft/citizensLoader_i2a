@@ -5,19 +5,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-public class MyLogger {
+public class ReportWritter {
 
 	BufferedWriter fichero;
+	
+	public ReportWritter() throws IOException{
+		createLog("generatedFiles/errors.log");
+	}
 	
 	public void createLog(String name) throws IOException {
 		fichero = new BufferedWriter(new FileWriter(name));
 	}
 	
-	public void record(String string) throws IOException {
+	public void record(String message, String filename) throws IOException {
 		Date date = new Date();
 		String linea = "";
 		fichero.append(linea);
-		fichero.append(date.toString() +" "+ string );
+		fichero.append("Filename: " + filename + " ");
+		fichero.append(date.toString() +" "+ message );
+
 		fichero.newLine();
 		fichero.append("--------------------------");
 		fichero.newLine();

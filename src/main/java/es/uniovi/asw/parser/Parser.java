@@ -9,5 +9,5 @@ import java.util.List;
  * Created by Carla on 09/02/2017.
  */
 public interface Parser {
-    List<Citizen> parseFile(File file);
+    List<Citizen> readList();
 }

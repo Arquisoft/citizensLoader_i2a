@@ -3,6 +3,7 @@ package es.uniovi.asw.parser;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -15,10 +16,10 @@ import es.uniovi.asw.Citizen;
 
 public class XlsxParserTest {
     @Test
-    public void testParseSmallFile(){
-        XlsxParser parser = new XlsxParser();
-        File file = new File("src/test/resources/testSmall.xlsx");
-        List<Citizen> users = parser.parseFile(file);
+    public void testParseSmallFile() throws IOException{
+    	File file = new File("src/test/resources/testSmall.xlsx");
+        XlsxParser parser = new XlsxParser(file);
+        List<Citizen> users = parser.readList();
 
         assertEquals("Name: Juan; Surname: Torres Pardo; " +
                 "Email: juan@example.com; Birth date: 10/10/1985; " +

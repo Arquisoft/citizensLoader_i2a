@@ -14,15 +14,25 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import es.uniovi.asw.Citizen;
 import es.uniovi.asw.letters.SendLetters;
+import es.uniovi.asw.persistence.DBFactory;
+import es.uniovi.asw.persistence.DBUpdate;
 
 /**
  * Created by Carla on 08/02/2017.
  */
 public class XlsxParser implements Parser {
-	SendLetters letter = new SendLetters();
+	private SendLetters letter = new SendLetters();
+	private DBUpdate db;
+	private File file;
+
+	public XlsxParser(File file) throws IOException {
+		DBFactory factory = new DBFactory();
+		db = factory.getDBImpl();
+		this.file = file;
+	}
 
 	@Override
-	public List<Citizen> parseFile(File file) {
+	public List<Citizen> readList() {
 		List<Citizen> users = new ArrayList<Citizen>();
 
 		try {
@@ -49,6 +59,8 @@ public class XlsxParser implements Parser {
 
 			parseUsers(users, sheet, rows);
 			wb.close();
+			
+			db.sendToDB(users, file.getName());
 
 		} catch (Exception ioe) {
 			ioe.printStackTrace();
@@ -56,6 +68,11 @@ public class XlsxParser implements Parser {
 
 		return users;
 
+	}
+	
+	public void insert() throws IOException{
+		List<Citizen> citizens = readList();
+		db.sendToDB(citizens, file.getName());
 	}
 
 	private void parseUsers(List<Citizen> users, XSSFSheet sheet, int rows) throws IOException {
@@ -72,12 +89,16 @@ public class XlsxParser implements Parser {
 				String dni = row.getCell(6).getStringCellValue();
 				int polling = (int) row.getCell(7).getNumericCellValue();
 
-				Citizen citizen = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad, polling);
+				Citizen citizen = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
+						polling);
 
-				// create a random alphanumeric password and persists the user
-				citizen.setPassword(RandomStringUtils.randomAlphanumeric(10));
-				
-				letter.send(citizen);
+				if (!db.citizenExists(citizen)) {
+					// create a random alphanumeric password and persists the
+					// user
+					citizen.setPassword(RandomStringUtils.randomAlphanumeric(10));
+
+					letter.send(citizen);
+				} 
 
 				users.add(citizen);
 			}

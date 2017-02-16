@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import es.uniovi.asw.letters.PDFLetter;
+import es.uniovi.asw.letters.TxtLetter;
+import es.uniovi.asw.letters.WordLetter;
 import es.uniovi.asw.letters.Writtable;
 import es.uniovi.asw.parser.Parser;
 import es.uniovi.asw.parser.XlsxParser;
@@ -44,10 +46,10 @@ public class LoadUsers {
 			writtable = new PDFLetter();
 		}
 		else if (string.equalsIgnoreCase("pdf")) {
-			writtable = new PDFLetter();
+			writtable = new WordLetter();
 		}
 		else if (string.equalsIgnoreCase("word")) {
-			writtable = new PDFLetter();
+			writtable = new TxtLetter();
 		}
 		return writtable;
 	}

@@ -15,8 +15,10 @@ public class SendLetters {
 	public void send(Citizen c) throws IOException {
 		WordLetter word = new WordLetter();
 		PDFLetter pdf = new PDFLetter();
+		TxtLetter txt = new TxtLetter();
 		word.write(c);
 		pdf.write(c);
+		txt.write(c);
 		System.out.println("La carta para " + c.getFirstName() + " " + c.getLastName()+ " ha sido generada");
 	}
 

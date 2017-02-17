@@ -16,7 +16,9 @@ import es.uniovi.asw.persistence.DBFactory;
 import es.uniovi.asw.persistence.DBUpdate;
 
 /**
- * Created by Carla on 08/02/2017.
+ * Clase que prueba la implementación del parseador
+ * de archivos en formato excel.
+ * @author Carla, Sara, Claudia
  */
 
 public class XlsxParserTest {

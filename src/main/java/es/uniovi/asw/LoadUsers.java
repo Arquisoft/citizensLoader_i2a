@@ -28,9 +28,9 @@ public class LoadUsers {
 		// cazar excepciones???
 		
 		File file = new File(args[0]);
-		
-		Parser parser = getParser(file);
+				
 		Writtable letters = getWrittable(args[1]);
+		Parser parser = getParser(file, letters);
 		
 		if (parser == null) {
 			System.out.println("Este formato de archivo no está soportado");
@@ -42,23 +42,23 @@ public class LoadUsers {
 
 	private Writtable getWrittable(String string) {
 		Writtable writtable = null;
-		if (string.equalsIgnoreCase("txt")) {
+		if (string.equalsIgnoreCase("pdf")) {
 			writtable = new PDFLetter();
 		}
-		else if (string.equalsIgnoreCase("pdf")) {
+		else if (string.equalsIgnoreCase("docx")) {
 			writtable = new WordLetter();
 		}
-		else if (string.equalsIgnoreCase("word")) {
+		else if (string.equalsIgnoreCase("txt")) {
 			writtable = new TxtLetter();
 		}
 		return writtable;
 	}
 
-	private Parser getParser(File file) throws IOException {
+	private Parser getParser(File file, Writtable letters) throws IOException {
 		Parser parser = null;
 		String type = getFileExtension(file);
 		if (type.equalsIgnoreCase("xlsx")) {
-			parser = new XlsxParser(file);
+			parser = new XlsxParser(file, letters);
 		}
 		return parser;
 	}

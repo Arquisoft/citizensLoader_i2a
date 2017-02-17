@@ -14,23 +14,30 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import es.uniovi.asw.Citizen;
 import es.uniovi.asw.letters.SendLetters;
+import es.uniovi.asw.letters.Writtable;
 import es.uniovi.asw.persistence.DBFactory;
 import es.uniovi.asw.persistence.DBUpdate;
 
 /**
- * Created by Carla on 08/02/2017.
+ * Implementation of a Parser for Excel files
+ * @author Carla, Sara, Claudia
+ *
  */
 public class XlsxParser implements Parser {
-	private SendLetters letter = new SendLetters();
+	private Writtable letter;
 	private DBUpdate db;
 	private File file;
 
-	public XlsxParser(File file) throws IOException {
-		DBFactory factory = new DBFactory();
-		db = factory.getDBImpl();
+	public XlsxParser(File file, Writtable letter) throws IOException {
+		db = DBFactory.getDBImpl();
 		this.file = file;
+		this.letter = letter;
 	}
 
+	/**
+	 * Reads an excel file and inserts in the Citizen
+	 * database data read from it.
+	 */
 	@Override
 	public List<Citizen> readList() {
 		List<Citizen> users = new ArrayList<Citizen>();
@@ -75,8 +82,16 @@ public class XlsxParser implements Parser {
 		db.sendToDB(citizens, file.getName());
 	}
 
+	/**
+	 * Adds new citizens (read from the excel file) to the
+	 * specified list.
+	 * @param users - citizens list
+	 * @param sheet - xlsx sheet
+	 * @param rows - number of rows to be read
+	 * @throws IOException
+	 */
 	private void parseUsers(List<Citizen> users, XSSFSheet sheet, int rows) throws IOException {
-		XSSFRow row;// se salta la primera línea
+		XSSFRow row;// se salta la primera línea con la cabecera
 		for (int r = 1; r < rows; r++) {
 			row = sheet.getRow(r);
 			if (row != null) {
@@ -97,7 +112,7 @@ public class XlsxParser implements Parser {
 					// user
 					citizen.setPassword(RandomStringUtils.randomAlphanumeric(10));
 
-					letter.send(citizen);
+					SendLetters.send(citizen, letter);
 				} 
 
 				users.add(citizen);

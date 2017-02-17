@@ -76,4 +76,16 @@ public class DBUpdateImpl implements DBUpdate {
 		return count == 0;
 	}
 
+	@Override
+	public Citizen findByDNI(String dni) {
+		@SuppressWarnings("unchecked")
+		List<Citizen> citizen = (List<Citizen>)Jpa.getEntityManager().createQuery("select c"
+				+ " from Citizen c"
+				+ " where c.dni = ?1")				
+				.setParameter(1, dni)
+				.getResultList();
+		return citizen.size() == 1? 
+				citizen.get(0) : null;
+	}
+
 }

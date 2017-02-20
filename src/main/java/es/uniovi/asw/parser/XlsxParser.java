@@ -63,7 +63,7 @@ public class XlsxParser implements Parser {
                 String direccion = row.getCell(4).getStringCellValue();
                 String nacionalidad = row.getCell(5).getStringCellValue();
                 String dni = row.getCell(6).getStringCellValue();
-
+                System.out.println(dni);
                 Citizen user = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad);
                 user.setPassword(RandomPasswordGenerator.generatePassword());
 

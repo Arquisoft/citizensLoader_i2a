@@ -143,8 +143,12 @@ public class Citizen {
         return "Nombre: " + firstName + "; Apellidos: " + lastName + "; " +
                 "Email: " + email + "; Nacimiento: " + simpleDate + "; " +
                 "Dirección: " + address + "; Nacionalidad: " +
-                nationality + "; DNI: " + id;
+                nationality + "; DNI: " + dni;
     }
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 
 }

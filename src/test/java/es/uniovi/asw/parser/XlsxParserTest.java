@@ -1,7 +1,6 @@
 package es.uniovi.asw.parser;
 
 import es.uniovi.asw.Citizen;
-import es.uniovi.asw.User;
 import org.junit.*;
 
 import java.io.File;

@@ -9,14 +9,29 @@ public class ReportWritter {
 
 	BufferedWriter fichero;
 	
+	/**
+	 * Constructor giving the name and directory of our log file
+	 * @throws IOException
+	 */
 	public ReportWritter() throws IOException{
 		createLog("generatedFiles/errors.log");
 	}
 	
+	/**
+	 * Creates the log file
+	 * @param name
+	 * @throws IOException
+	 */
 	public void createLog(String name) throws IOException {
 		fichero = new BufferedWriter(new FileWriter(name));
 	}
 	
+	/**
+	 * Writes in the log file all the errors that may occur
+	 * @param message - error that happened
+	 * @param filename - name of the file which produced the error
+	 * @throws IOException
+	 */
 	public void record(String message, String filename) throws IOException {
 		Date date = new Date();
 		String linea = "";
@@ -29,11 +44,13 @@ public class ReportWritter {
 		fichero.newLine();
 	}
 
+	/**
+	 * Closes the file
+	 */
 	public void close() {
 		try {
 			fichero.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

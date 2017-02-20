@@ -13,6 +13,12 @@ import es.uniovi.asw.Citizen;
 public class WordLetter implements Writtable{
 	
 
+	/**
+	 * Writes in a word file a letter for each citizen,
+	 * specifying its own login email and password
+	 * @param c - citizen for which the letter will be written
+	 * @throws IOException
+	 */
 	public void write(Citizen c) throws IOException {
 	    XWPFDocument document = new XWPFDocument();
         //Write the Document in file system

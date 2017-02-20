@@ -12,6 +12,13 @@ import es.uniovi.asw.Citizen;
 public class PDFLetter implements Writtable{
 
 	@Override
+	
+	/**
+	 * Writes in a pdf file a letter for each citizen,
+	 * specifying its own login email and password
+	 * @param c - citizen for which the letter will be written
+	 * @throws IOException
+	 */
 	public void write(Citizen c) throws FileNotFoundException {
 		//Initialize PDF writer
         PdfWriter writer = new PdfWriter("generatedFiles/Welcome"+c.getDni()+".pdf");

@@ -17,6 +17,12 @@ public class DBUpdateImpl implements DBUpdate {
 		log = new ReportWritter();
 	}
 
+	/**
+	 * Method that inserts in the database all the parsed users.
+	 * Prints a log if there is some type of error.
+	 * @param list - list of citizens that have been parsed
+	 * @param filename - name of the document parsed which will appear in the log
+	 */
 	@Override
 	public void sendToDB(List<Citizen> list, String filename) throws IOException {
 		EntityManager mapper = Jpa.getEntityManager();
@@ -42,6 +48,11 @@ public class DBUpdateImpl implements DBUpdate {
 		trx.commit();
 	}
 
+	/**
+	 * Checks if a citizen already exists in the database
+	 * @param c - citizen to check
+	 * @return true if it exists, false if not
+	 */
 	@Override
 	public boolean citizenExists(Citizen c) {
 		Long count = (Long) Jpa.getEntityManager().createQuery("select count(c)"
@@ -52,6 +63,11 @@ public class DBUpdateImpl implements DBUpdate {
 		return count != 0;
 	}
 
+	/**
+	 * Checks if there is some user already in the database with wrong data
+	 * @param c Citizen
+	 * @return true if there is no user with different data, false otherwise
+	 */
 	@Override
 	public boolean citizenHasSameData(Citizen c) {
 		Long count = (Long) Jpa.getEntityManager().createQuery("select count(c)"
@@ -75,7 +91,12 @@ public class DBUpdateImpl implements DBUpdate {
 		.getSingleResult();
 		return count == 0;
 	}
-
+	
+	/**
+	 * Finds a citizen giving as a parameter its dni
+	 * @param dni of the citizen you want to find
+	 * @return the citizen with the dni specified
+	 */
 	@Override
 	public Citizen findByDNI(String dni) {
 		@SuppressWarnings("unchecked")

@@ -7,9 +7,11 @@ import es.uniovi.asw.Citizen;
 public class SendLetters {
 	
 	/**
-	 * This method is a greater one which calls all the other methods that "print"
-	 * a letter in different formats.
-	 * @param c (citizen)
+	 * This method is a greater one which calls the method that prints a letter
+	 * in the format you specify as a parameter.
+	 * Prints a message informing which citizen has had its letter printed
+	 * @param type of the letter (pdf, word, txt)
+	 * @param c (citizen) which receives the letter and has its data printed
 	 * @throws IOException 
 	 */
 	public static void send(Citizen c, Writtable letter) throws IOException {

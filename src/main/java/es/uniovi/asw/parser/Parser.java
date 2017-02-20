@@ -1,13 +1,14 @@
 package es.uniovi.asw.parser;
 
-import es.uniovi.asw.Citizen;
-
-import java.io.File;
 import java.util.List;
 
+import es.uniovi.asw.Citizen;
+
 /**
- * Created by Carla on 09/02/2017.
+ * Interface for all Parser objects. 
+ * Expresses functionality to read a file and 
+ * return a list of citizens.
  */
 public interface Parser {
-    List<Citizen> parseFile(File file);
+    List<Citizen> readList();
 }

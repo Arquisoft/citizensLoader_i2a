@@ -16,10 +16,10 @@ public class CitizenTest {
 	@Before
 	public void setUp() {
 		Date date = new Date();
-		c1 = new Citizen("12345A", "Nombre", "Apellidos", date, "Direccion", "email@email.com", "español");
+		c1 = new Citizen("12345A", "Nombre", "Apellidos", date, "Direccion", "email@email.com", "español", 1);
 		c1.setId((long) 1);
 		c2 = c1;
-		c3 = new Citizen("09876B", "OtroNombre", "Apellidos", date, "Direccion2", "email@email.com", "español");
+		c3 = new Citizen("09876B", "OtroNombre", "Apellidos", date, "Direccion2", "email@email.com", "español", 1);
 		c3.setId((long) 2);
 	}
 	
@@ -63,6 +63,10 @@ public class CitizenTest {
 		assertEquals(null, c1.getEmail());
 		c1.setEmail("email@email.com");
 		assertEquals("email@email.com", c1.getEmail());
+		
+		assertEquals(0, c1.getPollingStation());
+		c1.setPollingStation(1);
+		assertEquals(1, c1.getPollingStation());
 
 		assertEquals(null, c1.getFirstName());
 		assertEquals(null, c1.getLastName());

@@ -27,13 +27,14 @@ public class Citizen {
 	private String email;
 	private String password;
 	private String nationality;
-
+	@Column(name="POLLING_STATION")
+	private int pollingStation;
 	private String dni;
 
 	public Citizen() { }
 
 	public Citizen(String dni, String firstName, String lastName, Date birthdate, String address, String email,
-			String nationality) {
+			String nationality, int pollingStation) {
 		super();
 		this.dni = dni;
 		this.firstName = firstName;
@@ -42,6 +43,7 @@ public class Citizen {
 		this.address = address;
 		this.email = email;
 		this.nationality = nationality;
+		this.pollingStation = pollingStation;
 	}
 
 	public String getFirstName() {
@@ -112,6 +114,14 @@ public class Citizen {
 		return dni;
 	}
 
+	public int getPollingStation() {
+		return pollingStation;
+	}
+
+	public void setPollingStation(int pollingStation) {
+		this.pollingStation = pollingStation;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,10 +150,12 @@ public class Citizen {
 	@Override
     public String toString() {
         String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
-        return "Nombre: " + firstName + "; Apellidos: " + lastName + "; " +
-                "Email: " + email + "; Nacimiento: " + simpleDate + "; " +
-                "Dirección: " + address + "; Nacionalidad: " +
-                nationality + "; DNI: " + dni;
+
+        return "Name: " + firstName + "; Surname: " + lastName + "; " +
+                "Email: " + email + "; Birth date: " + simpleDate + "; " +
+                "Address: " + address + "; Nationality: " +
+                nationality + "; DNI: " + dni + "; Polling station: " + pollingStation;
+
     }
 
 	public void setId(Long id) {

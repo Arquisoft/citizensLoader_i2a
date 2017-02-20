@@ -1,4 +1,4 @@
-package es.uniovi.asw.parser;
+package es.uniovi.asw.citizen;
 
 import static org.junit.Assert.*;
 

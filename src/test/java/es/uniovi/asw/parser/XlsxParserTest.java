@@ -1,6 +1,5 @@
 package es.uniovi.asw.parser;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -17,31 +16,27 @@ import es.uniovi.asw.persistence.DBFactory;
 import es.uniovi.asw.persistence.DBUpdate;
 
 /**
- * Clase que prueba la implementación del parseador
- * de archivos en formato excel.
+ * Clase que prueba la implementación del parseador de archivos en formato
+ * excel.
+ * 
  * @author Carla, Sara, Claudia
  */
 
 public class XlsxParserTest {
 	private DBUpdate db;
-	private final static String JUAN = "Name: Juan; Surname: Torres Pardo; " +
-            "Email: juan@example.com; Birth date: 10/10/1985; " +
-            "Address: C/ Federico García Lorca 2; Nationality: " +
-            "Español; DNI: 90500084Y; Polling station: 1";
-	private final static String LUIS = "Name: Luis; Surname: López Fernando; " +
-            "Email: luis@example.com; Birth date: 02/03/1970; " +
-            "Address: C/ Real Oviedo 2; Nationality: " +
-            "Español; DNI: 19160962F; Polling station: 2";
-	private final static String ANA = "Name: Ana; Surname: Torres Pardo; " +
-            "Email: ana@example.com; Birth date: 01/01/1960; " +
-            "Address: Av. De la Constitución 8; Nationality: " +
-            "Español; DNI: 09940449X; Polling station: 3";
-	private final static String PEDRO = "Name: Pedro; Surname: Pérez García; " +
-            "Email: pedro@example.com; Birth date: 04/09/1979; " +
-            "Address: C/ La playa 7; Nationality: " +
-            "Chileno; DNI: 56739582Y; Polling station: 4";
-	
-	
+	private final static String JUAN = "Name: Juan; Surname: Torres Pardo; "
+			+ "Email: juan@example.com; Birth date: 10/10/1985; " + "Address: C/ Federico García Lorca 2; Nationality: "
+			+ "Español; DNI: 90500084Y; Polling station: 1";
+	private final static String LUIS = "Name: Luis; Surname: López Fernando; "
+			+ "Email: luis@example.com; Birth date: 02/03/1970; " + "Address: C/ Real Oviedo 2; Nationality: "
+			+ "Español; DNI: 19160962F; Polling station: 2";
+	private final static String ANA = "Name: Ana; Surname: Torres Pardo; "
+			+ "Email: ana@example.com; Birth date: 01/01/1960; " + "Address: Av. De la Constitución 8; Nationality: "
+			+ "Español; DNI: 09940449X; Polling station: 3";
+	private final static String PEDRO = "Name: Pedro; Surname: Pérez García; "
+			+ "Email: pedro@example.com; Birth date: 04/09/1979; " + "Address: C/ La playa 7; Nationality: "
+			+ "Chileno; DNI: 56739582Y; Polling station: 4";
+
 	@Before
 	public void setUp() throws IOException{
 		//this.db = DBFactory.getDBImpl();

@@ -30,8 +30,8 @@ public class WordLetterTest {
         letter.write(prueba);
         
         String expected = "Gracias por registrarse! Su user es: "
-        		+ "pruebaEmail@email.com y su contraseña: PruebaPassword.";
-        String actual = leerDocx("generatedFiles/WelcomePruebaDNI3.docx");
+        		+ "pruebaEmail@email.com y su contraseña: PruebaPassword";
+        String actual = leerDocx("generatedFiles/WelcomePruebaDNI.docx");
         System.out.println(expected);
         System.out.println(actual);
         assertTrue(expected.trim().equals(actual.trim()));

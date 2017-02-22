@@ -78,6 +78,42 @@ public class XlsxParser implements Parser {
 
 	}
 	
+	public List<Citizen> readListTest() {
+		List<Citizen> users = new ArrayList<Citizen>();
+
+		try {
+			XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
+			XSSFSheet sheet = wb.getSheetAt(0);
+			XSSFRow row;
+
+			int rows; // No of rows
+			rows = sheet.getPhysicalNumberOfRows();
+
+			int cols = 0; // No of columns
+			int tmp = 0;
+
+			// This trick ensures that we get the data properly even if it
+			// doesn't start from first few rows
+			for (int i = 0; i < 10 || i < rows; i++) {
+				row = sheet.getRow(i);
+				if (row != null) {
+					tmp = sheet.getRow(i).getPhysicalNumberOfCells();
+					if (tmp > cols)
+						cols = tmp;
+				}
+			}
+
+			parseUsersTest(users, sheet, rows);
+			wb.close();
+
+		} catch (Exception ioe) {
+			ioe.printStackTrace();
+		}
+
+		return users;
+
+	}
+	
 	public void insert() throws IOException{
 		List<Citizen> citizens = readList();
 		db.sendToDB(citizens, file.getName());
@@ -119,5 +155,35 @@ public class XlsxParser implements Parser {
 				users.add(citizen);
 			}
 		}
+		
+		
+	}
+	
+	private void parseUsersTest(List<Citizen> users, XSSFSheet sheet, int rows) throws IOException {
+		XSSFRow row;// se salta la primera línea con la cabecera
+		for (int r = 1; r < rows; r++) {
+			row = sheet.getRow(r);
+			if (row != null) {
+				String nombre = row.getCell(0).getStringCellValue();
+				String apellidos = row.getCell(1).getStringCellValue();
+				String email = row.getCell(2).getStringCellValue();
+				Date nacimiento = row.getCell(3).getDateCellValue();
+				String direccion = row.getCell(4).getStringCellValue();
+				String nacionalidad = row.getCell(5).getStringCellValue();
+				String dni = row.getCell(6).getStringCellValue();
+				int polling = (int) row.getCell(7).getNumericCellValue();
+
+				Citizen citizen = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
+						polling);
+
+
+				SendLetters.send(citizen, letter);
+				
+
+				users.add(citizen);
+			}
+		}
+		
+		
 	}
 }

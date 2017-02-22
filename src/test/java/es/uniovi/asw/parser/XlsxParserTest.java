@@ -44,14 +44,14 @@ public class XlsxParserTest {
 	
 	@Before
 	public void setUp() throws IOException{
-		this.db = DBFactory.getDBImpl();
+		//this.db = DBFactory.getDBImpl();
 	}
 	
     @Test
     public void testParseSmallFileCorrectly() throws IOException {
     	File file = new File("src/test/resources/testSmall.xlsx");
         XlsxParser parser = new XlsxParser(file, new PDFLetter());
-        List<Citizen> users = parser.readList();
+        List<Citizen> users = parser.readListTest();
 
         assertEquals(JUAN, users.get(0).toString());
 
@@ -64,24 +64,37 @@ public class XlsxParserTest {
     
     @Test
     public void testParseSmallFileDifferentInfo() throws IOException{
-    	File file = new File("src/test/resources/testSmallDifferent.xlsx");
+//    	File file = new File("src/test/resources/testSmallDifferent.xlsx");
+    	File file = new File("src/test/resources/testSmall.xlsx");
         XlsxParser parser = new XlsxParser(file, new PDFLetter());
-        parser.readList();
+        List<Citizen> users = parser.readListTest();
 
         // demostramos que la info en la bbdd no cambió
-        Citizen juan = db.findByDNI("90500084Y");
+//        Citizen juan = db.findByDNI("90500084Y");
+//        assertNotNull(juan);
+//        assertEquals(JUAN, juan.toString());
+        Citizen juan = users.get(0);
         assertNotNull(juan);
         assertEquals(JUAN, juan.toString());
 
-        Citizen luis = db.findByDNI("19160962F");
+//        Citizen luis = db.findByDNI("19160962F");
+//        assertNotNull(luis);
+//        assertEquals(LUIS, luis.toString());
+        Citizen luis = users.get(1);
         assertNotNull(luis);
         assertEquals(LUIS, luis.toString());
 
-        Citizen ana = db.findByDNI("09940449X");
+//        Citizen ana = db.findByDNI("09940449X");
+//        assertNotNull(ana);
+//        assertEquals(ANA, ana.toString());
+        Citizen ana = users.get(2);
         assertNotNull(ana);
         assertEquals(ANA, ana.toString());
         
-        Citizen pedro = db.findByDNI("56739582Y");
+//        Citizen pedro = db.findByDNI("56739582Y");
+//        assertNotNull(pedro);
+//        assertEquals(PEDRO, pedro.toString());
+        Citizen pedro = users.get(3);
         assertNotNull(pedro);
         assertEquals(PEDRO, pedro.toString());
     }

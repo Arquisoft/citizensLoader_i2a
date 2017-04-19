@@ -2,7 +2,7 @@ package es.uniovi.asw.parser;
 
 import java.util.List;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 /**
  * Interface for all Parser objects. 
@@ -10,5 +10,5 @@ import es.uniovi.asw.Citizen;
  * return a list of citizens.
  */
 public interface Parser {
-    List<Citizen> readList();
+    List<User> readList();
 }

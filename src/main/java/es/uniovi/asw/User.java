@@ -7,33 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-public class Citizen {
-
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
-
-	@Column(name="FIRST_NAME") private String firstName;
-	@Column(name="LAST_NAME") private String lastName;
+public class User {
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="BIRTH_DATE")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Integer id;
+
+	private String firstName;
+	private String lastName;
 	private Date birthdate;
-	
 	private String address;
 	private String email;
 	private String password;
 	private String nationality;
-	@Column(name="POLLING_STATION")
 	private int pollingStation;
 	private String dni;
 
-	public Citizen() { }
+	public User() {
+	}
 
-	public Citizen(String dni, String firstName, String lastName, Date birthdate, String address, String email,
+	public User(String dni, String firstName, String lastName, Date birthdate, String address, String email,
 			String nationality, int pollingStation) {
 		super();
 		this.dni = dni;
@@ -50,7 +43,7 @@ public class Citizen {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -58,7 +51,7 @@ public class Citizen {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setSurname(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -102,14 +95,19 @@ public class Citizen {
 		this.nationality = nationality;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public void setDni(String dni) {
 		this.dni = dni;
+
 	}
-	
+
 	public String getDni() {
 		return dni;
 	}
@@ -120,8 +118,9 @@ public class Citizen {
 
 	public void setPollingStation(int pollingStation) {
 		this.pollingStation = pollingStation;
-	}
 
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -132,35 +131,17 @@ public class Citizen {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Citizen other = (Citizen) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		return obj.toString().equals(this.toString());
 	}
-	
+
 	@Override
-    public String toString() {
-        String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
+	public String toString() {
+		String simpleDate = new SimpleDateFormat("dd/MM/yyyy").format(birthdate);
 
-        return "Name: " + firstName + "; Surname: " + lastName + "; " +
-                "Email: " + email + "; Birth date: " + simpleDate + "; " +
-                "Address: " + address + "; Nationality: " +
-                nationality + "; DNI: " + dni + "; Polling station: " + pollingStation;
+		return "User[Id: " + id + "; Name: " + firstName + "; Surname: " + lastName + "; " + "Email: " + email + "; Birth date: "
+				+ simpleDate + "; " + "Address: " + address + "; Nationality: " + nationality + "; DNI: " + dni
+				+ "; Polling station: " + pollingStation +"]";
 
-    }
-
-	public void setId(Long id) {
-		this.id = id;
 	}
-
 
 }

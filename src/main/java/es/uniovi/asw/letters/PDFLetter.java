@@ -7,7 +7,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public class PDFLetter implements Writtable{
 
@@ -19,7 +19,7 @@ public class PDFLetter implements Writtable{
 	 * @param c - citizen for which the letter will be written
 	 * @throws IOException
 	 */
-	public void write(Citizen c) throws FileNotFoundException {
+	public void write(User c) throws FileNotFoundException {
 		//Initialize PDF writer
         PdfWriter writer = new PdfWriter("generatedFiles/Welcome"+c.getDni()+".pdf");
  

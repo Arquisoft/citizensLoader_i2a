@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public class TxtLetter implements Writtable {
 	
@@ -15,7 +15,7 @@ public class TxtLetter implements Writtable {
 	 * @throws IOException
 	 */
 	@Override
-	public void write(Citizen c) throws IOException {
+	public void write(User c) throws IOException {
 		BufferedWriter fichero;
 		//give the name and directory
 		String nombreFichero = "generatedFiles/Welcome"+c.getDni()+".txt";

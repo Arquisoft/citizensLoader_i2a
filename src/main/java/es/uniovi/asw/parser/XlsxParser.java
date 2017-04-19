@@ -12,11 +12,11 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 import es.uniovi.asw.letters.SendLetters;
 import es.uniovi.asw.letters.Writtable;
-import es.uniovi.asw.persistence.DBFactory;
-import es.uniovi.asw.persistence.DBUpdate;
+import es.uniovi.asw.persistence.UserDao;
+import es.uniovi.asw.persistence.impl.UserDaoImpl;
 
 /**
  * Implementation of a Parser for Excel files
@@ -26,11 +26,11 @@ import es.uniovi.asw.persistence.DBUpdate;
 public class XlsxParser implements Parser {
 
 	private Writtable letter;
-	private DBUpdate db;
+	private UserDao userDao;
 	private File file;
 
 	public XlsxParser(File file, Writtable letter) throws IOException {
-		db = DBFactory.getDBImpl();
+		userDao = new UserDaoImpl();
 		this.file = file;
 		this.letter = letter;
 	}
@@ -40,8 +40,8 @@ public class XlsxParser implements Parser {
 	 * database data read from it.
 	 */
 	@Override
-	public List<Citizen> readList() {
-		List<Citizen> users = new ArrayList<Citizen>();
+	public List<User> readList() {
+		List<User> users = new ArrayList<User>();
 
 		try {
 			XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
@@ -68,7 +68,7 @@ public class XlsxParser implements Parser {
 			parseUsers(users, sheet, rows);
 			wb.close();
 			
-			db.sendToDB(users, file.getName());
+			userDao.sendToDB(users, file.getName());
 
 		} catch (Exception ioe) {
 			ioe.printStackTrace();
@@ -78,8 +78,8 @@ public class XlsxParser implements Parser {
 
 	}
 	
-	public List<Citizen> readListTest() {
-		List<Citizen> users = new ArrayList<Citizen>();
+	public List<User> readListTest() {
+		List<User> users = new ArrayList<User>();
 
 		try {
 			XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
@@ -115,8 +115,8 @@ public class XlsxParser implements Parser {
 	}
 	
 	public void insert() throws IOException{
-		List<Citizen> citizens = readList();
-		db.sendToDB(citizens, file.getName());
+		List<User> citizens = readList();
+		userDao.sendToDB(citizens, file.getName());
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class XlsxParser implements Parser {
 	 * @param rows - number of rows to be read
 	 * @throws IOException
 	 */
-	private void parseUsers(List<Citizen> users, XSSFSheet sheet, int rows) throws IOException {
+	private void parseUsers(List<User> users, XSSFSheet sheet, int rows) throws IOException {
 		XSSFRow row;// se salta la primera línea con la cabecera
 		for (int r = 1; r < rows; r++) {
 			row = sheet.getRow(r);
@@ -141,10 +141,10 @@ public class XlsxParser implements Parser {
 				String dni = row.getCell(6).getStringCellValue();
 				int polling = (int) row.getCell(7).getNumericCellValue();
 
-				Citizen citizen = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
+				User citizen = new User(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
 						polling);
 
-				if (!db.citizenExists(citizen)) {
+				if (userDao.getUserByEmail(citizen.getEmail()) == null) {
 					// create a random alphanumeric password and persists the
 					// user
 					citizen.setPassword(RandomStringUtils.randomAlphanumeric(10));
@@ -159,7 +159,7 @@ public class XlsxParser implements Parser {
 		
 	}
 	
-	private void parseUsersTest(List<Citizen> users, XSSFSheet sheet, int rows) throws IOException {
+	private void parseUsersTest(List<User> users, XSSFSheet sheet, int rows) throws IOException {
 		XSSFRow row;// se salta la primera línea con la cabecera
 		for (int r = 1; r < rows; r++) {
 			row = sheet.getRow(r);
@@ -173,7 +173,7 @@ public class XlsxParser implements Parser {
 				String dni = row.getCell(6).getStringCellValue();
 				int polling = (int) row.getCell(7).getNumericCellValue();
 
-				Citizen citizen = new Citizen(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
+				User citizen = new User(dni, nombre, apellidos, nacimiento, direccion, email, nacionalidad,
 						polling);
 
 

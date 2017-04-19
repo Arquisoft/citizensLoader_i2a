@@ -54,46 +54,7 @@ public class LoadUsers {
 		} else {
 			parser.readList();
 		}
-		metodoClaudia();
-		metodoClaudia2();
-	}
-	
-	
-
-	private void metodoClaudia2() throws FileNotFoundException {
-		//Initialize PDF writer
-        PdfWriter writer = new PdfWriter("generatedFiles/WelcomePruebaDNI3.pdf");
- 
-        //Initialize PDF document
-        PdfDocument pdf = new PdfDocument(writer);
- 
-        // Initialize document
-        Document document = new Document(pdf);
- 
-        //Add paragraph to the document
-        document.add(new Paragraph("Gracias por registrarse! Su user es: "
-        		+ "pruebaEmail@email.com y su contraseña: PruebaPassword."));
- 
-        //Close document
-        document.close();
-	}
-
-	private void metodoClaudia() throws IOException {
-		 XWPFDocument document = new XWPFDocument();
-	        //Write the Document in file system
-		    FileOutputStream out = new FileOutputStream(
-		    		new File("generatedFiles/WelcomePruebaDNI3.docx"));
-
-	        //create Paragraph
-	        XWPFParagraph paragraph = document.createParagraph();
-	        XWPFRun run = paragraph.createRun();
-	        run.setText("Gracias por registrarse! Su user es: "
-	        		+ "pruebaEmail@email.com y su contraseña: PruebaPassword.");
-	        document.write(out);
-	       
-	        //Close document
-	        out.close();
-	        document.close();
+		
 	}
 
 	/**

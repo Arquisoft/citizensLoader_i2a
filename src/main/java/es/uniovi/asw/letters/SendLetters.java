@@ -2,7 +2,7 @@ package es.uniovi.asw.letters;
 
 import java.io.IOException;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public class SendLetters {
 	
@@ -14,7 +14,7 @@ public class SendLetters {
 	 * @param c (citizen) which receives the letter and has its data printed
 	 * @throws IOException 
 	 */
-	public static void send(Citizen c, Writtable letter) throws IOException {
+	public static void send(User c, Writtable letter) throws IOException {
 		letter.write(c);
 		System.out.println("La carta para " + c.getFirstName() + " " + c.getLastName()+ " ha sido generada");
 	}

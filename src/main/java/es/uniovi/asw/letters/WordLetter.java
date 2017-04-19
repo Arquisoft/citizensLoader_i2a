@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import org.apache.poi.xwpf.usermodel.*;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public class WordLetter implements Writtable{
 	
@@ -19,7 +19,7 @@ public class WordLetter implements Writtable{
 	 * @param c - citizen for which the letter will be written
 	 * @throws IOException
 	 */
-	public void write(Citizen c) throws IOException {
+	public void write(User c) throws IOException {
 	    XWPFDocument document = new XWPFDocument();
         //Write the Document in file system
 	    FileOutputStream out = new FileOutputStream(

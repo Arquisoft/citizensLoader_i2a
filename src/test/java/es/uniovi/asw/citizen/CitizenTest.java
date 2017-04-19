@@ -7,20 +7,20 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public class CitizenTest {
 
-	Citizen c1, c2, c3;
+	User c1, c2, c3;
 
 	@Before
 	public void setUp() {
 		Date date = new Date();
-		c1 = new Citizen("12345A", "Nombre", "Apellidos", date, "Direccion", "email@email.com", "español", 1);
-		c1.setId((long) 1);
+		c1 = new User("12345A", "Nombre", "Apellidos", date, "Direccion", "email@email.com", "español", 1);
+		c1.setId(new Integer(1));
 		c2 = c1;
-		c3 = new Citizen("09876B", "OtroNombre", "Apellidos", date, "Direccion2", "email@email.com", "español", 1);
-		c3.setId((long) 2);
+		c3 = new User("09876B", "OtroNombre", "Apellidos", date, "Direccion2", "email@email.com", "español", 1);
+		c3.setId(new Integer(2));
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class CitizenTest {
 	
 	@Test
 	public void test() {
-		c1 = new Citizen();
+		c1 = new User();
 		
 		assertEquals(null, c1.getDni());
 		c1.setDni("123456789A");
@@ -70,8 +70,8 @@ public class CitizenTest {
 
 		assertEquals(null, c1.getFirstName());
 		assertEquals(null, c1.getLastName());
-		c1.setFirstName("Nombre");
-		c1.setLastName("Apellidos");
+		c1.setName("Nombre");
+		c1.setSurname("Apellidos");
 		assertEquals("Nombre Apellidos", c1.getFirstName() + " " + c1.getLastName());		
 		
 	}

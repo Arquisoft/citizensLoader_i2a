@@ -10,7 +10,7 @@ import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.junit.Test;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 /**
  * Clase que prueba la implementación de las cartas
@@ -23,7 +23,7 @@ public class WordLetterTest {
     @Test
     public void testCreateFileCorrectly() throws IOException {    
         WordLetter letter = new WordLetter();
-        Citizen prueba = new Citizen();
+        User prueba = new User();
         prueba.setDni("PruebaDNI");
         prueba.setEmail("pruebaEmail@email.com");
         prueba.setPassword("PruebaPassword");

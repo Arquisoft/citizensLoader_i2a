@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 /**
  * Clase que prueba la implementación de las cartas
@@ -20,7 +20,7 @@ public class TextLetterTest {
     @Test
     public void testCreateFileCorrectly() throws IOException {    
         TxtLetter letter = new TxtLetter();
-        Citizen prueba = new Citizen();
+        User prueba = new User();
         prueba.setDni("PruebaDNI");
         prueba.setEmail("pruebaEmail@email.com");
         prueba.setPassword("PruebaPassword");

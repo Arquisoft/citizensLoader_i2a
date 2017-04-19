@@ -2,7 +2,7 @@ package es.uniovi.asw.letters;
 
 import java.io.IOException;
 
-import es.uniovi.asw.Citizen;
+import es.uniovi.asw.User;
 
 public interface Writtable {
 
@@ -14,6 +14,6 @@ public interface Writtable {
 	 * @param c - citizen for which the letter will be written
 	 * @throws IOException
 	 */
-	void write(Citizen c) throws IOException;
+	void write(User c) throws IOException;
 
 }
